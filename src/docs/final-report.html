@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>final-report.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="shopify-crm-integration--technical-recommendation-report">Shopify CRM Integration – Technical Recommendation Report</h1>
+<h2 id="company">Company</h2>
+<p>HelloGrowthCRM</p>
+<hr>
+<h1 id="1-introduction">1. Introduction</h1>
+<p>This document presents a technical recommendation and implementation plan for integrating Shopify with HelloGrowthCRM.</p>
+<p>The integration enables synchronization of Shopify store data into the CRM system, allowing businesses to automate workflows, track sales activity, improve customer engagement, and manage marketing campaigns using real-time Shopify data.</p>
+<p>The project demonstrates backend integration architecture using:</p>
+<ul>
+<li>Node.js</li>
+<li>Express.js</li>
+<li>PostgreSQL</li>
+<li>Prisma ORM</li>
+<li>Shopify OAuth</li>
+<li>Shopify Admin APIs</li>
+</ul>
+<hr>
+<h1 id="2-objective">2. Objective</h1>
+<p>The objective of this integration is to:</p>
+<ul>
+<li>Connect Shopify stores securely with the CRM</li>
+<li>Synchronize customers, orders, products, refunds, and payments</li>
+<li>Enable automation workflows</li>
+<li>Support marketing campaigns</li>
+<li>Improve customer retention</li>
+<li>Track sales pipelines in real time</li>
+</ul>
+<hr>
+<h1 id="3-observations-from-hellogrowthcrm">3. Observations from HelloGrowthCRM</h1>
+<p>After exploring crm.hellogrowthcrm.com, the following CRM modules and workflows were identified.</p>
+<h2 id="leads">Leads</h2>
+<ul>
+<li>Lead creation and management</li>
+<li>Lead status tracking</li>
+<li>Follow-up workflows</li>
+</ul>
+<h2 id="contacts">Contacts</h2>
+<ul>
+<li>Customer information management</li>
+<li>Communication tracking</li>
+<li>Customer activity history</li>
+</ul>
+<h2 id="pipelines">Pipelines</h2>
+<ul>
+<li>Sales opportunity tracking</li>
+<li>Revenue monitoring</li>
+<li>Deal stage management</li>
+</ul>
+<h2 id="campaigns">Campaigns</h2>
+<ul>
+<li>Email campaigns</li>
+<li>Customer targeting</li>
+<li>Marketing automation</li>
+</ul>
+<h2 id="automation">Automation</h2>
+<ul>
+<li>Trigger-based workflows</li>
+<li>Scheduled actions</li>
+<li>Follow-up automation</li>
+</ul>
+<h2 id="settings">Settings</h2>
+<ul>
+<li>Integrations</li>
+<li>API configurations</li>
+<li>User permissions</li>
+<li>Workflow settings</li>
+</ul>
+<hr>
+<h1 id="4-recommended-shopify-apis">4. Recommended Shopify APIs</h1>
+<h2 id="core-apis">Core APIs</h2>
+<h3 id="shopify-admin-rest-api">Shopify Admin REST API</h3>
+<p>Used for customer, order, product, and transaction management.</p>
+<h3 id="shopify-graphql-admin-api">Shopify GraphQL Admin API</h3>
+<p>Used for optimized data querying and large-scale synchronization.</p>
+<hr>
+<h1 id="5-apis-required-for-integration">5. APIs Required for Integration</h1>
+<h2 id="customer-apis">Customer APIs</h2>
+<ul>
+<li>Customers API</li>
+<li>Customer Addresses API</li>
+</ul>
+<h3 id="purpose">Purpose</h3>
+<ul>
+<li>CRM contact synchronization</li>
+<li>Customer activity tracking</li>
+<li>Segmentation</li>
+</ul>
+<hr>
+<h2 id="order-apis">Order APIs</h2>
+<ul>
+<li>Orders API</li>
+<li>Transactions API</li>
+<li>Fulfillment API</li>
+</ul>
+<h3 id="purpose-1">Purpose</h3>
+<ul>
+<li>Sales tracking</li>
+<li>Revenue reporting</li>
+<li>Pipeline management</li>
+</ul>
+<hr>
+<h2 id="product-apis">Product APIs</h2>
+<ul>
+<li>Products API</li>
+<li>Inventory API</li>
+</ul>
+<h3 id="purpose-2">Purpose</h3>
+<ul>
+<li>Product synchronization</li>
+<li>Inventory monitoring</li>
+<li>Product analytics</li>
+</ul>
+<hr>
+<h2 id="payment-apis">Payment APIs</h2>
+<ul>
+<li>Transactions API</li>
+</ul>
+<h3 id="purpose-3">Purpose</h3>
+<ul>
+<li>Payment tracking</li>
+<li>Revenue analytics</li>
+<li>Failed payment monitoring</li>
+</ul>
+<hr>
+<h2 id="abandoned-cart-apis">Abandoned Cart APIs</h2>
+<ul>
+<li>Abandoned Checkout API</li>
+</ul>
+<h3 id="purpose-4">Purpose</h3>
+<ul>
+<li>Recovery campaigns</li>
+<li>Customer retargeting</li>
+<li>Automated reminders</li>
+</ul>
+<hr>
+<h2 id="refund-apis">Refund APIs</h2>
+<ul>
+<li>Refund API</li>
+</ul>
+<h3 id="purpose-5">Purpose</h3>
+<ul>
+<li>Refund tracking</li>
+<li>Customer retention workflows</li>
+<li>Support analytics</li>
+</ul>
+<hr>
+<h1 id="6-authentication-flow">6. Authentication Flow</h1>
+<h2 id="shopify-oauth-authentication">Shopify OAuth Authentication</h2>
+<p>The integration uses Shopify OAuth 2.0 authentication.</p>
+<h2 id="oauth-workflow">OAuth Workflow</h2>
+<ol>
+<li>Merchant clicks &quot;Connect Shopify&quot;</li>
+<li>Redirect to Shopify authorization page</li>
+<li>Merchant approves app permissions</li>
+<li>Shopify redirects to backend callback URL</li>
+<li>Authorization code exchanged for access token</li>
+<li>Access token securely stored in PostgreSQL</li>
+<li>CRM backend accesses Shopify APIs using token</li>
+</ol>
+<hr>
+<h2 id="required-oauth-scopes">Required OAuth Scopes</h2>
+<pre class="hljs"><code><div>read_customers
+read_orders
+read_products</div></code></pre>
+
+</body>
+</html>
